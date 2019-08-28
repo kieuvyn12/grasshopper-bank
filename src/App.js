@@ -144,26 +144,37 @@ class App extends React.Component {
     } else {
       copy = JSON.parse(JSON.stringify([...this.state.transactions]))
     }
-    if (event === 'dateAsc') {
-      copy.sort((a, b) => a.date - b.date)
-    } else if (event === 'dateDes') {
-      copy.sort((a, b) => b.date - a.date)
-    } else if (event === 'amountDes') {
-      copy.sort((a, b) => b.amount - a.amount)
-    } else if (event === 'amountAsc') {
-      copy.sort((a, b) => a.amount - b.amount)
-    } else if (event === 'typeDes') {
-      copy.sort((a, b) => b.type[0].charCodeAt() - a.type[0].charCodeAt())
-    } else if (event === 'typeAsc') {
-      copy.sort((a, b) => a.type[0].charCodeAt() - b.type[0].charCodeAt())
-    } else if (event === 'categoryDes') {
-      copy.sort(
-        (a, b) => b.category[0].charCodeAt() - a.category[0].charCodeAt()
-      )
-    } else if (event === 'categoryAsc') {
-      copy.sort(
-        (a, b) => a.category[0].charCodeAt() - b.category[0].charCodeAt()
-      )
+    switch (event) {
+      case 'dateAsc':
+        copy.sort((a, b) => a.date - b.date)
+        break
+      case 'dateDes':
+        copy.sort((a, b) => b.date - a.date)
+        break
+      case 'amountDes':
+        copy.sort((a, b) => b.amount - a.amount)
+        break
+      case 'amountAsc':
+        copy.sort((a, b) => a.amount - b.amount)
+        break
+      case 'typeDes':
+        copy.sort((a, b) => b.type[0].charCodeAt() - a.type[0].charCodeAt())
+        break
+      case 'typeAsc':
+        copy.sort((a, b) => a.type[0].charCodeAt() - b.type[0].charCodeAt())
+        break
+      case 'categoryDes':
+        copy.sort(
+          (a, b) => b.category[0].charCodeAt() - a.category[0].charCodeAt()
+        )
+        break
+      case 'categoryAsc':
+        copy.sort(
+          (a, b) => a.category[0].charCodeAt() - b.category[0].charCodeAt()
+        )
+        break
+      default:
+        copy.sort((a, b) => a.date - b.date)
     }
     if (this.state.filteredTransactions.length) {
       this.setState({filteredTransactions: copy})
