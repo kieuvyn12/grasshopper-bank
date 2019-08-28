@@ -247,6 +247,29 @@ class App extends React.Component {
     return []
   }
 
+  convertUnixToDate(date) {
+    let months = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec'
+    ]
+    date = new Date(date)
+    let year = date.getFullYear()
+    let month = months[date.getMonth()]
+    let day = date.getDate()
+    let display = `${month}-${day}-${year}`
+    return display
+  }
+
   render() {
     let arr = new Array(31)
     for (let i = 0; i < arr.length; i++) {
