@@ -17,6 +17,7 @@ class App extends React.Component {
     this.sortByDateAsc = this.sortByDateAsc.bind(this)
     this.initializeAccounts = this.initializeAccounts.bind(this)
     this.accountsData = this.accountsData.bind(this)
+    this.sortBy = this.sortBy.bind(this)
   }
 
   getUserId(event) {
@@ -122,6 +123,33 @@ class App extends React.Component {
     arr = arr.reverse()
     this.setState({transactions: arr})
     return arr
+  }
+
+  sortBy(event) {
+    let copy = JSON.parse(JSON.stringify([...this.state.transactions]))
+    if (event === 'dateAsc') {
+      copy.sort((a, b) => a.date - b.date)
+    } else if (event === 'dateDes') {
+      copy.sort((a, b) => b.date - a.date)
+    } else if (event === 'amountDes') {
+      copy.sort((a, b) => b.amount - a.amount)
+    } else if (event === 'amountAsc') {
+      copy.sort((a, b) => a.amount - b.amount)
+    } else if (event === 'typeDes') {
+      copy.sort((a, b) => b.type[0].charCodeAt() - a.type[0].charCodeAt())
+    } else if (event === 'typeAsc') {
+      copy.sort((a, b) => a.type[0].charCodeAt() - b.type[0].charCodeAt())
+    } else if (event === 'categoryDes') {
+      copy.sort(
+        (a, b) => b.category[0].charCodeAt() - a.category[0].charCodeAt()
+      )
+    } else if (event === 'categoryAsc') {
+      copy.sort(
+        (a, b) => a.category[0].charCodeAt() - b.category[0].charCodeAt()
+      )
+    }
+    this.setState({transactions: copy})
+    return copy
   }
 
   render() {
