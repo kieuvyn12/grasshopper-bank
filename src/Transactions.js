@@ -7,9 +7,9 @@ const Transactions = props => (
       <ol>
         {props.allTransactions.map(transaction => (
           <li key={transaction.id} className="transaction">
-            {transaction.date}, description: {transaction.description}, type:{' '}
-            {transaction.type}, amount: {transaction.amount}, total balance:{' '}
-            {transaction.balance}, category: {transaction.category}
+            {transaction.displayDate}, description: {transaction.description},
+            type: {transaction.type}, amount: {transaction.amount}, total
+            balance: {transaction.balance}, category: {transaction.category}
           </li>
         ))}
       </ol>

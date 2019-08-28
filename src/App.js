@@ -36,6 +36,7 @@ class App extends React.Component {
     this.handleYearChangeTo = this.handleYearChangeTo.bind(this)
     this.handleSubmitTime = this.handleSubmitTime.bind(this)
     this.resetDateRange = this.resetDateRange.bind(this)
+    this.convertUnixToDate = this.convertUnixToDate.bind(this)
   }
 
   getUserId(event) {
@@ -134,7 +135,8 @@ class App extends React.Component {
           description: transaction.description,
           origin_account: transaction.origin_account,
           beneficiary_account: transaction.beneficiary_account,
-          category: transaction.category
+          category: transaction.category,
+          displayDate: this.convertUnixToDate(transaction.date)
         })
       }
     }
