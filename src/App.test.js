@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import App from './App'
 import Transactions from './Transactions'
 import DateForm from './DateForm'
+import UserIdButtons from './UserIdButtons'
 
 import Enzyme, {shallow, mount} from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
@@ -23,12 +24,6 @@ describe('<App /> component', () => {
   it('renders', () => {
     const wrapper = shallow(<App />)
     expect(wrapper.exists()).to.equal(true)
-  })
-  describe('userId buttons', () => {
-    it('renders 9 userId buttons', () => {
-      const wrapper = shallow(<App />)
-      expect(wrapper.find('.userIdButton')).to.have.lengthOf(9)
-    })
   })
 
   describe('API response', () => {
@@ -421,6 +416,20 @@ describe('<App /> component', () => {
   })
 })
 
+describe('<UserIdButtons /> component', () => {
+  it('renders 9 userId buttons', () => {
+    const wrapper = shallow(<UserIdButtons />)
+    expect(wrapper.find('.userIdButton')).to.have.lengthOf(9)
+  })
+})
+
+describe('<DateForm /> component', () => {
+  it('renders', () => {
+    const wrapper = shallow(<DateForm />)
+    expect(wrapper.exists()).to.equal(true)
+  })
+})
+
 describe('<Transactions /> component', () => {
   it('renders', () => {
     const wrapper = shallow(<Transactions allTransactions={[]} />)
@@ -464,12 +473,5 @@ describe('<Transactions /> component', () => {
     ]
     const wrapper = shallow(<Transactions allTransactions={allTransactions} />)
     expect(wrapper.find('.transaction')).to.have.lengthOf(3)
-  })
-})
-
-describe('<DateForm /> component', () => {
-  it('renders', () => {
-    const wrapper = shallow(<DateForm />)
-    expect(wrapper.exists()).to.equal(true)
   })
 })

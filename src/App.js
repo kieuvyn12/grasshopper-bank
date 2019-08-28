@@ -3,6 +3,7 @@ import './App.css'
 import axios from 'axios'
 import Transactions from './Transactions'
 import DateForm from './DateForm'
+import UserIdButton from './UserIdButtons'
 
 class App extends React.Component {
   constructor(props) {
@@ -229,66 +230,62 @@ class App extends React.Component {
   }
 
   render() {
-    let userIds = new Array(9)
-    for (let i = 0; i < userIds.length; i++) {
-      userIds[i] = i + 1
-    }
-
     return (
       <div className="App">
-        <div className="buttons">
-          What is your user ID?
-          {userIds.map(userId => (
-            <button
-              id={userId}
-              className="userIdButton"
-              key={userId}
-              onClick={this.getUserId}
-              value={userId}
-            >
-              {userId}
-            </button>
-          ))}
-        </div>
-        Sort by account:{' '}
-        <form>
-          <select name="accountNumber" onChange={this.handleAccountNumberInput}>
-            {[...this.state.accounts].map(account => (
-              <option key={Math.random()} value={account}>
-                {account}
-              </option>
-            ))}
-          </select>
-        </form>
-        Sort By:
-        <form>
-          <select name="sortBy" onChange={this.handleSortInput}>
-            <option value="dateDes">Date Descending</option>
-            <option value="dateAsc">Date Ascending</option>
-            <option value="amountDes">Amount Descending</option>
-            <option value="amountAsc">Amount Ascending</option>
-            <option value="typeDes">Type Descending</option>
-            <option value="typeAsc">Type Ascending</option>
-            <option value="categoryDes">Category Descending</option>
-            <option value="categoryAsc">Category Ascending</option>
-          </select>
-        </form>
-        <DateForm handleSubmitTime={this.handleSubmitTime} />
-        <button onClick={this.resetDateRange}>See All History</button>
-        {this.state.filteredTransactions.length ? (
-          <div>
-            Only transactions from {this.state.filteredRangeFrom} to{' '}
-            {this.state.filteredRangeTo}
-            <Transactions allTransactions={this.state.filteredTransactions} />
-          </div>
+        {this.state.userId === 0 ? (
+          <UserIdButton handleClick={this.getUserId} />
         ) : (
           <div>
-            {this.state.transactions.length ? (
-              <div>All transactions: </div>
+            Not you? Choose another user ID to sign in as:{' '}
+            <div className="buttons">
+              <UserIdButton handleClick={this.getUserId} />
+            </div>
+            Sort by account:{' '}
+            <form>
+              <select
+                name="accountNumber"
+                onChange={this.handleAccountNumberInput}
+              >
+                {[...this.state.accounts].map(account => (
+                  <option key={Math.random()} value={account}>
+                    {account}
+                  </option>
+                ))}
+              </select>
+            </form>
+            Sort By:
+            <form>
+              <select name="sortBy" onChange={this.handleSortInput}>
+                <option value="dateDes">Date Descending</option>
+                <option value="dateAsc">Date Ascending</option>
+                <option value="amountDes">Amount Descending</option>
+                <option value="amountAsc">Amount Ascending</option>
+                <option value="typeDes">Type Descending</option>
+                <option value="typeAsc">Type Ascending</option>
+                <option value="categoryDes">Category Descending</option>
+                <option value="categoryAsc">Category Ascending</option>
+              </select>
+            </form>
+            <DateForm handleSubmitTime={this.handleSubmitTime} />
+            <button onClick={this.resetDateRange}>See All History</button>
+            {this.state.filteredTransactions.length ? (
+              <div>
+                Only transactions from {this.state.filteredRangeFrom} to{' '}
+                {this.state.filteredRangeTo}
+                <Transactions
+                  allTransactions={this.state.filteredTransactions}
+                />
+              </div>
             ) : (
-              ' '
+              <div>
+                {this.state.transactions.length ? (
+                  <div>All transactions: </div>
+                ) : (
+                  ' '
+                )}
+                <Transactions allTransactions={this.state.transactions} />
+              </div>
             )}
-            <Transactions allTransactions={this.state.transactions} />
           </div>
         )}
       </div>
