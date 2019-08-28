@@ -30,9 +30,11 @@ class App extends React.Component {
   }
 
   sortByDateDesc(transactions) {
+    let sorted = transactions.sort((a, b) => b.date - a.date)
     this.setState({
-      allTransactions: transactions.sort((a, b) => b.date - a.date)
+      allTransactions: sorted
     })
+    return sorted
   }
 
   render() {
