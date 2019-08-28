@@ -2,6 +2,7 @@ import React from 'react'
 import './App.css'
 import axios from 'axios'
 import Transactions from './Transactions'
+import DateForm from './DateForm'
 
 class App extends React.Component {
   constructor(props) {
@@ -12,13 +13,9 @@ class App extends React.Component {
       accounts: new Set(),
       transactions: [],
       totalBalance: 0,
-      fromYear: '2019',
-      toYear: '2019',
-      fromMonth: '01',
-      toMonth: '01',
-      fromDay: '01',
-      toDay: '01',
-      filteredTransactions: []
+      filteredTransactions: [],
+      filteredRangeFrom: '',
+      filteredRangeTo: ''
     }
     this.getUserId = this.getUserId.bind(this)
     this.getTransactions = this.getTransactions.bind(this)
@@ -28,12 +25,6 @@ class App extends React.Component {
     this.sortBy = this.sortBy.bind(this)
     this.handleAccountNumberInput = this.handleAccountNumberInput.bind(this)
     this.handleSortInput = this.handleSortInput.bind(this)
-    this.handleDateChangeFrom = this.handleDateChangeFrom.bind(this)
-    this.handleDateChangeTo = this.handleDateChangeTo.bind(this)
-    this.handleMonthChangeFrom = this.handleMonthChangeFrom.bind(this)
-    this.handleMonthChangeTo = this.handleMonthChangeTo.bind(this)
-    this.handleYearChangeFrom = this.handleYearChangeFrom.bind(this)
-    this.handleYearChangeTo = this.handleYearChangeTo.bind(this)
     this.handleSubmitTime = this.handleSubmitTime.bind(this)
     this.resetDateRange = this.resetDateRange.bind(this)
     this.convertUnixToDate = this.convertUnixToDate.bind(this)
@@ -190,64 +181,19 @@ class App extends React.Component {
     this.sortBy(event.target.value)
   }
 
-  handleYearChangeFrom(event) {
-    this.setState({
-      fromYear: event.target.value
-    })
-  }
-
-  handleYearChangeTo(event) {
-    this.setState({
-      toYear: event.target.value
-    })
-  }
-
-  handleMonthChangeFrom(event) {
-    this.setState({
-      fromMonth: event.target.value
-    })
-  }
-
-  handleMonthChangeTo(event) {
-    this.setState({
-      toMonth: event.target.value
-    })
-  }
-
-  handleDateChangeFrom(event) {
-    let day = event.target.value
-    if (day.length < 2) {
-      day = '0' + day
-    }
-    this.setState({
-      fromDay: day
-    })
-  }
-
-  handleDateChangeTo(event) {
-    let day = event.target.value
-    if (day.length < 2) {
-      day = '0' + day
-    }
-    this.setState({
-      toDay: day
-    })
-  }
-
-  handleSubmitTime(event) {
-    let fromDate = `${this.state.fromYear}.${this.state.fromMonth}.${this.state.fromDay}`
-    let toDate = `${this.state.toYear}.${this.state.toMonth}.${this.state.toDay}`
-    let unixFinalDateFrom = new Date(fromDate).getTime()
-    let unixFinalDateTo = new Date(toDate).getTime()
+  handleSubmitTime(unixFinalDateFrom, unixFinalDateTo) {
     let filteredTransactions = this.state.transactions.filter(
       transaction =>
         transaction.date <= unixFinalDateTo &&
         transaction.date >= unixFinalDateFrom
     )
+    let filteredRangeFrom = this.convertUnixToDate(unixFinalDateFrom)
+    let filteredRangeTo = this.convertUnixToDate(unixFinalDateTo)
     this.setState({
-      filteredTransactions: filteredTransactions
+      filteredTransactions: filteredTransactions,
+      filteredRangeFrom: filteredRangeFrom,
+      filteredRangeTo: filteredRangeTo
     })
-    event.preventDefault()
     return filteredTransactions
   }
 
@@ -283,11 +229,6 @@ class App extends React.Component {
   }
 
   render() {
-    let arr = new Array(31)
-    for (let i = 0; i < arr.length; i++) {
-      arr[i] = i + 1
-    }
-
     let userIds = new Array(9)
     for (let i = 0; i < userIds.length; i++) {
       userIds[i] = i + 1
@@ -332,67 +273,12 @@ class App extends React.Component {
             <option value="categoryAsc">Category Ascending</option>
           </select>
         </form>
-        From:
-        <form onSubmit={this.handleSubmitTime}>
-          <select name="year" onChange={this.handleYearChangeFrom}>
-            <option value="2019">2019</option>
-            <option value="2018">2018</option>
-          </select>
-          <select name="month" onChange={this.handleMonthChangeFrom}>
-            <option value="01">Jan</option>
-            <option value="02">Feb</option>
-            <option value="03">Mar</option>
-            <option value="04">Apr</option>
-            <option value="05">May</option>
-            <option value="06">Jun</option>
-            <option value="07">Jul</option>
-            <option value="08">Aug</option>
-            <option value="09">Sep</option>
-            <option value="10">Oct</option>
-            <option value="11">Nov</option>
-            <option value="12">Dec</option>
-          </select>
-          <select name="day" onChange={this.handleDateChangeFrom}>
-            {arr.map(x => (
-              <option value={x} key={x}>
-                {x}
-              </option>
-            ))}
-          </select>
-          to:
-          <select name="year" onChange={this.handleYearChangeTo}>
-            <option value="2019">2019</option>
-            <option value="2018">2018</option>
-          </select>
-          <select name="month" onChange={this.handleMonthChangeTo}>
-            <option value="01">Jan</option>
-            <option value="02">Feb</option>
-            <option value="03">Mar</option>
-            <option value="04">Apr</option>
-            <option value="05">May</option>
-            <option value="06">Jun</option>
-            <option value="07">Jul</option>
-            <option value="08">Aug</option>
-            <option value="09">Sep</option>
-            <option value="10">Oct</option>
-            <option value="11">Nov</option>
-            <option value="12">Dec</option>
-          </select>
-          <select name="day" onChange={this.handleDateChangeTo}>
-            {arr.map(x => (
-              <option value={x} key={x}>
-                {x}
-              </option>
-            ))}
-          </select>
-          <input type="submit" value="submit" className="submitDates" />
-        </form>
+        <DateForm handleSubmitTime={this.handleSubmitTime} />
         <button onClick={this.resetDateRange}>See All History</button>
         {this.state.filteredTransactions.length ? (
           <div>
-            Only transactions from {this.state.fromMonth}/{this.state.fromDay}/
-            {this.state.fromYear} to {this.state.toMonth}/{this.state.toDay}/
-            {this.state.toYear}:
+            Only transactions from {this.state.filteredRangeFrom} to{' '}
+            {this.state.filteredRangeTo}
             <Transactions allTransactions={this.state.filteredTransactions} />
           </div>
         ) : (

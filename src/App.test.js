@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
 import Transactions from './Transactions'
+import DateForm from './DateForm'
 
 import Enzyme, {shallow, mount} from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
@@ -380,16 +381,11 @@ describe('<App /> component', () => {
         }
       ]
       wrapper.setState({
-        transactions: testTransactions,
-        fromDay: '01',
-        fromMonth: '04',
-        fromYear: '2019',
-        toDay: '20',
-        toMonth: '05',
-        toYear: '2019'
+        transactions: testTransactions
       })
-      const fakeEvent = {preventDefault: () => {}}
-      let filteredTransactions = wrapper.instance().handleSubmitTime(fakeEvent)
+      let filteredTransactions = wrapper
+        .instance()
+        .handleSubmitTime(1553089500000, 1558681700000)
       expect(filteredTransactions[0].date).to.equal(1557187200000)
       expect(filteredTransactions[1].date).to.equal(1554681600000)
     })
@@ -407,13 +403,7 @@ describe('<App /> component', () => {
         }
       ]
       wrapper.setState({
-        transactions: testTransactions,
-        fromDay: '01',
-        fromMonth: '04',
-        fromYear: '2019',
-        toDay: '20',
-        toMonth: '05',
-        toYear: '2019'
+        transactions: testTransactions
       })
       const fakeEvent = {preventDefault: () => console.log('preventDefault')}
       let resetToAllTransactions = wrapper.instance().resetDateRange(fakeEvent)
@@ -474,5 +464,12 @@ describe('<Transactions /> component', () => {
     ]
     const wrapper = shallow(<Transactions allTransactions={allTransactions} />)
     expect(wrapper.find('.transaction')).to.have.lengthOf(3)
+  })
+})
+
+describe('<DateForm /> component', () => {
+  it('renders', () => {
+    const wrapper = shallow(<DateForm />)
+    expect(wrapper.exists()).to.equal(true)
   })
 })
