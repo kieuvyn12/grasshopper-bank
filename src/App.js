@@ -143,7 +143,12 @@ class App extends React.Component {
   }
 
   sortBy(event) {
-    let copy = JSON.parse(JSON.stringify([...this.state.transactions]))
+    let copy
+    if (this.state.filteredTransactions.length) {
+      copy = JSON.parse(JSON.stringify([...this.state.filteredTransactions]))
+    } else {
+      copy = JSON.parse(JSON.stringify([...this.state.transactions]))
+    }
     if (event === 'dateAsc') {
       copy.sort((a, b) => a.date - b.date)
     } else if (event === 'dateDes') {
@@ -165,7 +170,11 @@ class App extends React.Component {
         (a, b) => a.category[0].charCodeAt() - b.category[0].charCodeAt()
       )
     }
-    this.setState({transactions: copy})
+    if (this.state.filteredTransactions.length) {
+      this.setState({filteredTransactions: copy})
+    } else {
+      this.setState({transactions: copy})
+    }
     return copy
   }
 
