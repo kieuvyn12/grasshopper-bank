@@ -388,7 +388,23 @@ class App extends React.Component {
           <input type="submit" value="submit" className="submitDates" />
         </form>
         <button onClick={this.resetDateRange}>See All History</button>
-        <Transactions allTransactions={this.state.transactions} />
+        {this.state.filteredTransactions.length ? (
+          <div>
+            Only transactions from {this.state.fromMonth}/{this.state.fromDay}/
+            {this.state.fromYear} to {this.state.toMonth}/{this.state.toDay}/
+            {this.state.toYear}:
+            <Transactions allTransactions={this.state.filteredTransactions} />
+          </div>
+        ) : (
+          <div>
+            {this.state.transactions.length ? (
+              <div>All transactions: </div>
+            ) : (
+              ' '
+            )}
+            <Transactions allTransactions={this.state.transactions} />
+          </div>
+        )}
       </div>
     )
   }

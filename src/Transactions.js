@@ -3,7 +3,6 @@ import React from 'react'
 const Transactions = props => (
   <div>
     <div>
-      All transactions:{' '}
       <ol>
         {props.allTransactions.map(transaction => (
           <li key={transaction.id} className="transaction">
