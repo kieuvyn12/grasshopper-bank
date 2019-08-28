@@ -10,17 +10,23 @@ class App extends React.Component {
       allTransactions: []
     }
     this.getUserId = this.getUserId.bind(this)
+    this.getTransactions = this.getTransactions.bind(this)
     this.sortByDateDesc = this.sortByDateDesc.bind(this)
   }
 
-  async getUserId(event) {
+  getUserId(event) {
     this.setState({
       userId: event.target.value
     })
+    this.getTransactions(event.target.value)
+  }
+
+  async getTransactions(num) {
     let results = await axios.get(
-      `http://tech-challenge.d3ucrjz23k.us-east-1.elasticbeanstalk.com/transactions/${event.target.value}`
+      `http://tech-challenge.d3ucrjz23k.us-east-1.elasticbeanstalk.com/transactions/${num}`
     )
     this.sortByDateDesc(results.data)
+    return results.data
   }
 
   sortByDateDesc(transactions) {
@@ -37,10 +43,11 @@ class App extends React.Component {
 
     return (
       <div className="App">
-        <div>
+        <div className="buttons">
           What is your user ID?
           {userIds.map(userId => (
             <button
+              id={userId}
               className="userIdButton"
               key={userId}
               onClick={this.getUserId}

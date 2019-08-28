@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
 
-import Enzyme, {shallow} from 'enzyme'
+import Enzyme, {shallow, mount} from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 
 import {expect} from 'chai'
@@ -25,5 +25,10 @@ describe('<App /> component', () => {
   it('renders 9 userId buttons', () => {
     const wrapper = shallow(<App />)
     expect(wrapper.find('.userIdButton')).to.have.lengthOf(9)
+  })
+  it('hits test API', async () => {
+    const wrapper = shallow(<App />)
+    const data = await wrapper.instance().getTransactions(3)
+    expect(data.length).to.equal(3)
   })
 })
