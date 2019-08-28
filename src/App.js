@@ -1,6 +1,7 @@
 import React from 'react'
 import './App.css'
 import axios from 'axios'
+import Transactions from './Transactions'
 
 class App extends React.Component {
   constructor(props) {
@@ -385,6 +386,7 @@ class App extends React.Component {
           <input type="submit" value="submit" className="submitDates" />
         </form>
         <button onClick={this.resetDateRange}>See All History</button>
+        <Transactions allTransactions={this.state.transactions} />
       </div>
     )
   }
