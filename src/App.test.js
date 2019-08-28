@@ -40,4 +40,19 @@ describe('<App /> component', () => {
     expect(data[1].date).to.equal(expectedSortedTestTransactions[1].date)
     expect(data[2].date).to.equal(expectedSortedTestTransactions[2].date)
   })
+  it('populates state with sorted transactions', async () => {
+    const wrapper = shallow(<App />)
+    const testTransactions = [{date: 10}, {date: 50}, {date: 1}]
+    const expectedSortedTestTransactions = [{date: 50}, {date: 10}, {date: 1}]
+    wrapper.instance().sortByDateDesc(testTransactions)
+    expect(wrapper.state().allTransactions[0].date).to.equal(
+      expectedSortedTestTransactions[0].date
+    )
+    expect(wrapper.state().allTransactions[1].date).to.equal(
+      expectedSortedTestTransactions[1].date
+    )
+    expect(wrapper.state().allTransactions[2].date).to.equal(
+      expectedSortedTestTransactions[2].date
+    )
+  })
 })
