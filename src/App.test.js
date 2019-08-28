@@ -363,5 +363,65 @@ describe('<App /> component', () => {
         expect(transactions[2].category).to.equal('rent')
       })
     })
+
+    describe('sorts by date interval', () => {
+      it('sorts by given date interval', () => {
+        const wrapper = shallow(<App />)
+        const testTransactions = [
+          {
+            date: 1557187200000 //05/07/2019
+          },
+          {
+            date: 1554681600000 //04/08/2019
+          },
+          {
+            date: 1552089600000 //03/09/2019
+          }
+        ]
+        wrapper.setState({
+          transactions: testTransactions,
+          fromDay: '01',
+          fromMonth: '04',
+          fromYear: '2019',
+          toDay: '20',
+          toMonth: '05',
+          toYear: '2019'
+        })
+        const fakeEvent = {preventDefault: () => console.log('preventDefault')}
+        let filteredTransactions = wrapper
+          .instance()
+          .handleSubmitTime(fakeEvent)
+        expect(filteredTransactions[0].date).to.equal(1557187200000)
+        expect(filteredTransactions[1].date).to.equal(1554681600000)
+      })
+      it('resets when clicked on view all history', () => {
+        const wrapper = shallow(<App />)
+        const testTransactions = [
+          {
+            date: 1557187200000 //05/07/2019
+          },
+          {
+            date: 1554681600000 //04/08/2019
+          },
+          {
+            date: 1552089600000 //03/09/2019
+          }
+        ]
+        wrapper.setState({
+          transactions: testTransactions,
+          fromDay: '01',
+          fromMonth: '04',
+          fromYear: '2019',
+          toDay: '20',
+          toMonth: '05',
+          toYear: '2019'
+        })
+        const fakeEvent = {preventDefault: () => console.log('preventDefault')}
+        let resetToAllTransactions = wrapper
+          .instance()
+          .resetDateRange(fakeEvent)
+        expect(resetToAllTransactions.length).to.equal(0)
+      })
+    })
   })
 })
