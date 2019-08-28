@@ -5,6 +5,9 @@ import App from './App'
 import Enzyme, {shallow} from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 
+import {expect} from 'chai'
+import sinon from 'sinon'
+
 const adapter = new Adapter()
 Enzyme.configure({adapter})
 
@@ -15,8 +18,12 @@ it('renders without crashing', () => {
 })
 
 describe('<App /> component', () => {
-  test('renders', () => {
+  it('renders', () => {
     const wrapper = shallow(<App />)
-    expect(wrapper.exists()).toBe(true)
+    expect(wrapper.exists()).to.equal(true)
+  })
+  it('renders 9 userId buttons', () => {
+    const wrapper = shallow(<App />)
+    expect(wrapper.find('.userIdButton')).to.have.lengthOf(9)
   })
 })

@@ -31,15 +31,21 @@ class App extends React.Component {
 
   render() {
     let userIds = new Array(9)
-    for (let i = 0; i < userIds.length - 1; i++) {
+    for (let i = 0; i < userIds.length; i++) {
       userIds[i] = i + 1
     }
+
     return (
       <div className="App">
         <div>
           What is your user ID?
           {userIds.map(userId => (
-            <button key={userId} onClick={this.getUserId} value={userId}>
+            <button
+              className="userIdButton"
+              key={userId}
+              onClick={this.getUserId}
+              value={userId}
+            >
               {userId}
             </button>
           ))}
