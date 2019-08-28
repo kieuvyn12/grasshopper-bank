@@ -4,6 +4,7 @@ import axios from 'axios'
 import Transactions from './Transactions'
 import DateForm from './DateForm'
 import UserIdButton from './UserIdButtons'
+import Navbar from './Navbar'
 
 class App extends React.Component {
   constructor(props) {
@@ -243,6 +244,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
+        <Navbar />
         {this.state.userId === 0 ? (
           <UserIdButton handleClick={this.getUserId} />
         ) : (

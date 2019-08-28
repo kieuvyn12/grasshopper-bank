@@ -4,6 +4,7 @@ import App from './App'
 import Transactions from './Transactions'
 import DateForm from './DateForm'
 import UserIdButtons from './UserIdButtons'
+import Navbar from './Navbar'
 
 import Enzyme, {shallow, mount} from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
@@ -413,6 +414,13 @@ describe('<App /> component', () => {
       expect(todaysDate).to.equal('Aug-28-2019')
       expect(myBday).to.equal('Aug-4-1994')
     })
+  })
+})
+
+describe('<Navbar /> component', () => {
+  it('renders', () => {
+    const wrapper = shallow(<Navbar />)
+    expect(wrapper.exists()).to.equal(true)
   })
 })
 
