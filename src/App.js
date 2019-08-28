@@ -8,12 +8,15 @@ class App extends React.Component {
     this.state = {
       userId: 0,
       allTransactions: [],
-      accounts: new Set()
+      accounts: new Set(),
+      transactions: [],
+      totalBalance: 0
     }
     this.getUserId = this.getUserId.bind(this)
     this.getTransactions = this.getTransactions.bind(this)
-    this.sortByDateDesc = this.sortByDateDesc.bind(this)
+    this.sortByDateAsc = this.sortByDateAsc.bind(this)
     this.initializeAccounts = this.initializeAccounts.bind(this)
+    this.accountsData = this.accountsData.bind(this)
   }
 
   getUserId(event) {
@@ -27,12 +30,12 @@ class App extends React.Component {
     let results = await axios.get(
       `http://tech-challenge.d3ucrjz23k.us-east-1.elasticbeanstalk.com/transactions/${num}`
     )
-    this.sortByDateDesc(results.data)
+    this.sortByDateAsc(results.data)
     return results.data
   }
 
-  sortByDateDesc(transactions) {
-    let sorted = transactions.sort((a, b) => b.date - a.date)
+  sortByDateAsc(transactions) {
+    let sorted = transactions.sort((a, b) => a.date - b.date)
     this.setState({
       allTransactions: sorted
     })
@@ -72,7 +75,53 @@ class App extends React.Component {
       }
     }
     this.setState({accounts: newAccounts})
+    this.accountsData()
     return newAccounts
+  }
+
+  accountsData(account) {
+    let arr = []
+    let newBalance = this.state.totalBalance
+    for (let i = 0; i < this.state.allTransactions.length; i++) {
+      let transaction = this.state.allTransactions[i]
+      if (
+        account === undefined ||
+        transaction.origin_account === account ||
+        transaction.beneficiary_account === account
+      ) {
+        if (
+          transaction['type'] === 'Wire In' ||
+          transaction['type'] === 'ACH In'
+        ) {
+          newBalance = newBalance + transaction.amount
+        } else if (
+          transaction['type'] === 'Wire Out' ||
+          transaction['type'] === 'ACH Out'
+        ) {
+          newBalance = newBalance - transaction.amount
+        } else {
+          if (transaction.origin_account === account) {
+            newBalance = newBalance - transaction.amount
+          } else if (transaction.beneficiary_account === account) {
+            newBalance = newBalance + transaction.amount
+          }
+        }
+        arr.push({
+          id: transaction.id,
+          balance: newBalance,
+          date: transaction.date,
+          amount: transaction.amount,
+          type: transaction.type,
+          description: transaction.description,
+          origin_account: transaction.origin_account,
+          beneficiary_account: transaction.beneficiary_account,
+          category: transaction.category
+        })
+      }
+    }
+    arr = arr.reverse()
+    this.setState({transactions: arr})
+    return arr
   }
 
   render() {
