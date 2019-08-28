@@ -7,11 +7,13 @@ class App extends React.Component {
     super(props)
     this.state = {
       userId: 0,
-      allTransactions: []
+      allTransactions: [],
+      accounts: new Set()
     }
     this.getUserId = this.getUserId.bind(this)
     this.getTransactions = this.getTransactions.bind(this)
     this.sortByDateDesc = this.sortByDateDesc.bind(this)
+    this.initializeAccounts = this.initializeAccounts.bind(this)
   }
 
   getUserId(event) {
@@ -34,7 +36,43 @@ class App extends React.Component {
     this.setState({
       allTransactions: sorted
     })
+    this.initializeAccounts()
     return sorted
+  }
+
+  initializeAccounts() {
+    let newAccounts = new Set()
+    for (let i = this.state.allTransactions.length - 1; i >= 0; i--) {
+      let transaction = this.state.allTransactions[i]
+      if (
+        transaction['type'] === 'Wire In' ||
+        transaction['type'] === 'ACH In'
+      ) {
+        if (!newAccounts.has([transaction['beneficiary_account']])) {
+          let accountNum = transaction['beneficiary_account']
+          newAccounts.add(accountNum)
+        }
+      } else if (
+        transaction['type'] === 'Wire Out' ||
+        transaction['type'] === 'ACH Out'
+      ) {
+        if (!newAccounts.has([transaction['origin_account']])) {
+          let accountNum = transaction['origin_account']
+          newAccounts.add(accountNum)
+        }
+      } else {
+        if (!newAccounts.has([transaction['beneficiary_account']])) {
+          let accountNumBeneficiary = transaction['beneficiary_account']
+          newAccounts.add(accountNumBeneficiary)
+        }
+        if (!newAccounts.has([transaction['origin_account']])) {
+          let accountNumOrigin = transaction['origin_account']
+          newAccounts.add(accountNumOrigin)
+        }
+      }
+    }
+    this.setState({accounts: newAccounts})
+    return newAccounts
   }
 
   render() {
