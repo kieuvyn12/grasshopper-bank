@@ -18,6 +18,8 @@ class App extends React.Component {
     this.initializeAccounts = this.initializeAccounts.bind(this)
     this.accountsData = this.accountsData.bind(this)
     this.sortBy = this.sortBy.bind(this)
+    this.handleAccountNumberInput = this.handleAccountNumberInput.bind(this)
+    this.handleSortInput = this.handleSortInput.bind(this)
   }
 
   getUserId(event) {
@@ -152,6 +154,15 @@ class App extends React.Component {
     return copy
   }
 
+  handleAccountNumberInput(event) {
+    let accountNumber = Number(event.target.value)
+    this.accountsData(accountNumber)
+  }
+
+  handleSortInput(event) {
+    this.sortBy(event.target.value)
+  }
+
   render() {
     let userIds = new Array(9)
     for (let i = 0; i < userIds.length; i++) {
@@ -174,6 +185,29 @@ class App extends React.Component {
             </button>
           ))}
         </div>
+        Sort by account:{' '}
+        <form>
+          <select name="accountNumber" onChange={this.handleAccountNumberInput}>
+            {[...this.state.accounts].map(account => (
+              <option key={account} value={account}>
+                {account}
+              </option>
+            ))}
+          </select>
+        </form>
+        Sort By:
+        <form>
+          <select name="sortBy" onChange={this.handleSortInput}>
+            <option value="dateDes">Date Descending</option>
+            <option value="dateAsc">Date Ascending</option>
+            <option value="amountDes">Amount Descending</option>
+            <option value="amountAsc">Amount Ascending</option>
+            <option value="typeDes">Type Descending</option>
+            <option value="typeAsc">Type Ascending</option>
+            <option value="categoryDes">Category Descending</option>
+            <option value="categoryAsc">Category Ascending</option>
+          </select>
+        </form>
       </div>
     )
   }
