@@ -11,8 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
 .userIdButton {
-  margin: 20px;
   border-radius: 80px;
 }

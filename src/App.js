@@ -5,7 +5,8 @@ import Transactions from './Transactions'
 import DateForm from './DateForm'
 import UserIdButton from './UserIdButtons'
 import Navbar from './Navbar'
-import {EventEmitter} from 'events'
+
+import {Container, Jumbotron, Row, Col} from 'react-bootstrap'
 
 class App extends React.Component {
   constructor(props) {
@@ -281,7 +282,18 @@ class App extends React.Component {
         <Navbar />
         {this.state.userId === 0 ? (
           <div>
-            What is your user ID?
+            <Container>
+              <Row className="justify-content-md-center">
+                <Col sm={9}>
+                  <Jumbotron>
+                    <Container>
+                      <h1>Welcome to Grasshopper Bank!</h1>
+                      <p>Please sign in by selecting your user ID below:</p>
+                    </Container>
+                  </Jumbotron>
+                </Col>
+              </Row>
+            </Container>
             <UserIdButton handleClick={this.getUserId} />
           </div>
         ) : (

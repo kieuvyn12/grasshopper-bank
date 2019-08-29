@@ -1,5 +1,5 @@
 import React from 'react'
-import Button from 'react-bootstrap/Button'
+import {Button, Container, Col, Row} from 'react-bootstrap'
 
 class UserIdButton extends React.Component {
   constructor(props) {
@@ -12,20 +12,26 @@ class UserIdButton extends React.Component {
       userIds[i] = i + 1
     }
     return (
-      <div className="buttons">
-        {userIds.map(userId => (
-          <Button
-            variant="primary"
-            size="lg"
-            className="userIdButton"
-            key={userId}
-            onClick={this.props.handleClick}
-            value={userId}
-          >
-            {userId}
-          </Button>
-        ))}
-      </div>
+      <Container>
+        <Row className="justify-content-md-center">
+          <Col sm={8}>
+            <div className="buttons">
+              {userIds.map(userId => (
+                <Button
+                  variant="primary"
+                  size="lg"
+                  className="userIdButton"
+                  key={userId}
+                  onClick={this.props.handleClick}
+                  value={userId}
+                >
+                  {userId}
+                </Button>
+              ))}
+            </div>
+          </Col>
+        </Row>
+      </Container>
     )
   }
 }
