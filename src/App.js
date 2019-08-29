@@ -42,6 +42,11 @@ class App extends React.Component {
     this.setState({
       userId: event.target.value
     })
+    if (this.state.filteredTransactions.length) {
+      this.setState({
+        filteredTransactions: []
+      })
+    }
     this.getTransactions(event.target.value)
   }
 
@@ -395,20 +400,23 @@ class App extends React.Component {
               Reset/See All Transactions
             </Button>
             {this.state.filteredTransactions.length ? (
-              <p className="displaying">
-                Currently displaying all transactions for{' '}
-                {this.state.selectedAccount} from {this.state.filteredRangeFrom}{' '}
-                to {this.state.filteredRangeTo}
+              <div>
+                <p className="displaying">
+                  Currently displaying transactions for{' '}
+                  <strong>{this.state.selectedAccount}</strong> from{' '}
+                  <strong>{this.state.filteredRangeFrom}</strong> to{' '}
+                  <strong>{this.state.filteredRangeTo}</strong>
+                </p>
                 <Transactions
                   allTransactions={this.state.filteredTransactions}
                 />
-              </p>
+              </div>
             ) : (
               <div>
                 {this.state.transactions.length ? (
                   <p className="displaying">
                     Currently displaying all transactions for{' '}
-                    {this.state.selectedAccount}{' '}
+                    <strong>{this.state.selectedAccount}</strong>
                   </p>
                 ) : (
                   ' '
