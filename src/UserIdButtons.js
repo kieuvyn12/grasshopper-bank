@@ -14,7 +14,7 @@ class UserIdButton extends React.Component {
     return (
       <Container>
         <Row className="justify-content-md-center">
-          <Col sm={8}>
+          <Col xs={11} sm={8}>
             <div className="buttons">
               {userIds.map(userId => (
                 <Button

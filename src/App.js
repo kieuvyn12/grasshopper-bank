@@ -292,7 +292,10 @@ class App extends React.Component {
                   <Jumbotron>
                     <Container>
                       <h1>Welcome to Grasshopper Bank!</h1>
-                      <p>Please sign in by selecting your user ID below:</p>
+                      <p className="pleaseSignIn">
+                        Please sign in by selecting your{' '}
+                        <strong>user ID</strong> below:
+                      </p>
                     </Container>
                   </Jumbotron>
                 </Col>
@@ -302,7 +305,10 @@ class App extends React.Component {
           </div>
         ) : (
           <div>
-            Not you? Choose another user ID to sign in as:{' '}
+            <p className="notYou">
+              Is this <em>not</em> your information? Please select another{' '}
+              <strong>user ID</strong>:
+            </p>
             <div className="buttons">
               <UserIdButton handleClick={this.getUserId} />
             </div>

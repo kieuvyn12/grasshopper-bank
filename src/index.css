@@ -11,10 +11,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.pleaseSignIn {
+  font-size: 25px;
+}
+
+.notYou {
+  margin: 10px;
+  font-size: 30px;
+}
+
 .buttons {
   display: flex;
   justify-content: space-between;
-  margin: 40px 40px 40px 40px;
+  margin-top: 20px;
+  margin-bottom: 30px;
 }
 .userIdButton {
   border-radius: 80px;
