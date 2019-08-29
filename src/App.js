@@ -5,6 +5,7 @@ import Transactions from './Transactions'
 import DateForm from './DateForm'
 import UserIdButton from './UserIdButtons'
 import Navbar from './Navbar'
+import {EventEmitter} from 'events'
 
 class App extends React.Component {
   constructor(props) {
@@ -15,6 +16,7 @@ class App extends React.Component {
       accounts: new Set(),
       transactions: [],
       totalBalance: 0,
+      searchTerm: '',
       filteredTransactions: [],
       filteredRangeFrom: '',
       filteredRangeTo: ''
@@ -30,6 +32,8 @@ class App extends React.Component {
     this.handleSubmitTime = this.handleSubmitTime.bind(this)
     this.resetDateRange = this.resetDateRange.bind(this)
     this.convertUnixToDate = this.convertUnixToDate.bind(this)
+    this.handleSearchChange = this.handleSearchChange.bind(this)
+    this.handleSearchSubmit = this.handleSearchSubmit.bind(this)
   }
 
   getUserId(event) {
@@ -190,6 +194,36 @@ class App extends React.Component {
     this.accountsData(accountNumber)
   }
 
+  handleSearchChange(event) {
+    this.setState({
+      searchTerm: event.target.value
+    })
+  }
+
+  handleSearchSubmit(event) {
+    let searchMatches
+    if (this.state.filteredTransactions.length) {
+      searchMatches = this.state.filteredTransactions.filter(transaction =>
+        transaction.description.includes(this.state.searchTerm)
+      )
+      this.setState({
+        filteredTransactions: searchMatches
+      })
+    } else {
+      searchMatches = this.state.transactions.filter(transaction =>
+        transaction.description.includes(this.state.searchTerm)
+      )
+      this.setState({
+        filteredTransactions: searchMatches
+      })
+    }
+    this.setState({
+      searchTerm: ''
+    })
+    event.preventDefault()
+    return searchMatches
+  }
+
   handleSortInput(event) {
     this.sortBy(event.target.value)
   }
@@ -265,6 +299,15 @@ class App extends React.Component {
                   </option>
                 ))}
               </select>
+            </form>
+            <form onSubmit={this.handleSearchSubmit}>
+              <label>Search By Keyword:</label>
+              <input
+                type="text"
+                value={this.state.searchTerm}
+                onChange={this.handleSearchChange}
+              ></input>
+              <input type="submit" value="Submit" />
             </form>
             Sort By:
             <form>

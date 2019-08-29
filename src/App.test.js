@@ -271,6 +271,20 @@ describe('<App /> component', () => {
       expect(transactions[2].balance).to.equal(234)
     })
   })
+  describe('searches by keyword', () => {
+    it('returns matches for input keyword', () => {
+      const wrapper = shallow(<App />)
+      const testTransactions = [
+        {description: 'groceries'},
+        {description: 'gym membership'},
+        {description: 'electric bill'}
+      ]
+      wrapper.setState({transactions: testTransactions, searchTerm: 'gym'})
+      const fakeEvent = {preventDefault: () => console.log('preventDefault')}
+      let searchMatches = wrapper.instance().handleSearchSubmit(fakeEvent)
+      expect(searchMatches[0].description).to.equal('gym membership')
+    })
+  })
 
   describe('sorts transactions by various criteria', () => {
     describe('sorts by date', () => {
