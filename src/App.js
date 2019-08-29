@@ -328,19 +328,19 @@ class App extends React.Component {
                   </Form>
                 </Col>
                 <Col sm={8}>
-                  <Form onSubmit={this.handleSearchSubmit} className="searchBy">
+                  <Form onSubmit={this.handleSearchSubmit}>
                     <Form.Label>Filter Using Keyword: </Form.Label>
-                    <Col sm={7}>
+                    <div className="searchBy">
                       <Form.Control
                         placeholder="Enter Keyword Here"
                         type="text"
                         value={this.state.searchTerm}
                         onChange={this.handleSearchChange}
                       ></Form.Control>
-                    </Col>
-                    <Col sm={2}>
-                      <Form.Control type="submit" value="Submit" />
-                    </Col>
+                      <Col sm={2}>
+                        <Form.Control type="submit" value="Submit" />
+                      </Col>
+                    </div>
                   </Form>
                 </Col>
               </Row>

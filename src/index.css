@@ -28,4 +28,22 @@ code {
 .dateDropdowns {
   display: flex;
   flex-direction: row;
+  padding: 0px;
+}
+
+.toLabel {
+  margin: 10px;
+}
+
+.yearDropdown {
+  margin-right: 5px;
+}
+
+.monthDropdown {
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.dayDropdown {
+  margin-left: 5px;
 }
