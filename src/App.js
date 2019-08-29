@@ -6,7 +6,7 @@ import DateForm from './DateForm'
 import UserIdButton from './UserIdButtons'
 import Navbar from './Navbar'
 
-import {Container, Jumbotron, Row, Col} from 'react-bootstrap'
+import {Container, Jumbotron, Row, Col, Form} from 'react-bootstrap'
 
 class App extends React.Component {
   constructor(props) {
@@ -104,6 +104,7 @@ class App extends React.Component {
       let transaction = this.state.allTransactions[i]
       if (
         account === undefined ||
+        account === 'all accounts' ||
         transaction.origin_account === account ||
         transaction.beneficiary_account === account
       ) {
@@ -191,7 +192,10 @@ class App extends React.Component {
   }
 
   handleAccountNumberInput(event) {
-    let accountNumber = Number(event.target.value)
+    let accountNumber
+    if (event.target.value !== 'all accounts') {
+      accountNumber = Number(event.target.value)
+    }
     this.accountsData(accountNumber)
   }
 
@@ -302,19 +306,23 @@ class App extends React.Component {
             <div className="buttons">
               <UserIdButton handleClick={this.getUserId} />
             </div>
-            Sort by account:{' '}
-            <form>
-              <select
+            <Form>
+              <Form.Label>Sort by account: </Form.Label>
+              <Form.Control
+                as="select"
                 name="accountNumber"
                 onChange={this.handleAccountNumberInput}
               >
-                {[...this.state.accounts].map(account => (
-                  <option key={Math.random()} value={account}>
-                    {account}
-                  </option>
-                ))}
-              </select>
-            </form>
+                {['choose an account']
+                  .concat([...this.state.accounts])
+                  .concat(['all accounts'])
+                  .map(account => (
+                    <option key={Math.random()} value={account}>
+                      {account}
+                    </option>
+                  ))}
+              </Form.Control>
+            </Form>
             <form onSubmit={this.handleSearchSubmit}>
               <label>Search By Keyword:</label>
               <input
