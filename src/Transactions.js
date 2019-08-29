@@ -1,18 +1,32 @@
 import React from 'react'
+import {Container, Table} from 'react-bootstrap'
 
 const Transactions = props => (
   <div>
-    <div>
-      <ol>
-        {props.allTransactions.map(transaction => (
-          <li key={transaction.id} className="transaction">
-            {transaction.displayDate}, description: {transaction.description},
-            type: {transaction.type}, amount: {transaction.amount}, total
-            balance: {transaction.balance}, category: {transaction.category}
-          </li>
-        ))}
-      </ol>
-    </div>
+    <Container>
+      <Table striped bordered hover>
+        <thead>
+          <th>Date Posted</th>
+          <th>Description</th>
+          <th>Category</th>
+          <th>Transaction Type</th>
+          <th>Amount</th>
+          <th>Total Balance</th>
+        </thead>
+        <tbody>
+          {props.allTransactions.map(transaction => (
+            <tr key={transaction.id} className="transaction">
+              <td>{transaction.displayDate}</td>{' '}
+              <td>{transaction.description}</td>
+              <td>{transaction.category}</td>
+              <td>{transaction.type}</td>
+              <td>${transaction.amount}.00</td>
+              <td>${transaction.balance}.00</td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+    </Container>
   </div>
 )
 
