@@ -328,33 +328,49 @@ class App extends React.Component {
                   </Form>
                 </Col>
                 <Col sm={8}>
-                  <Form onSubmit={this.handleSearchSubmit}>
-                    <Form.Label>Filter by Keyword: </Form.Label>
-                    <Form.Control
-                      placeholder="Enter Search Term Here"
-                      type="text"
-                      value={this.state.searchTerm}
-                      onChange={this.handleSearchChange}
-                    ></Form.Control>
-                    <Form.Control type="submit" value="Submit" />
+                  <Form onSubmit={this.handleSearchSubmit} className="searchBy">
+                    <Form.Label>Filter Using Keyword: </Form.Label>
+                    <Col sm={7}>
+                      <Form.Control
+                        placeholder="Enter Keyword Here"
+                        type="text"
+                        value={this.state.searchTerm}
+                        onChange={this.handleSearchChange}
+                      ></Form.Control>
+                    </Col>
+                    <Col sm={2}>
+                      <Form.Control type="submit" value="Submit" />
+                    </Col>
                   </Form>
                 </Col>
               </Row>
             </Container>
-            Sort By:
-            <form>
-              <select name="sortBy" onChange={this.handleSortInput}>
-                <option value="dateDes">Date Descending</option>
-                <option value="dateAsc">Date Ascending</option>
-                <option value="amountDes">Amount Descending</option>
-                <option value="amountAsc">Amount Ascending</option>
-                <option value="typeDes">Type Descending</option>
-                <option value="typeAsc">Type Ascending</option>
-                <option value="categoryDes">Category Descending</option>
-                <option value="categoryAsc">Category Ascending</option>
-              </select>
-            </form>
-            <DateForm handleSubmitTime={this.handleSubmitTime} />
+            <Container>
+              <Row>
+                <Col sm={4}>
+                  <Form>
+                    <Form.Label>Sort By:</Form.Label>
+                    <Form.Control
+                      as="select"
+                      name="sortBy"
+                      onChange={this.handleSortInput}
+                    >
+                      <option value="dateDes">Date Descending</option>
+                      <option value="dateAsc">Date Ascending</option>
+                      <option value="amountDes">Amount Descending</option>
+                      <option value="amountAsc">Amount Ascending</option>
+                      <option value="typeDes">Type Descending</option>
+                      <option value="typeAsc">Type Ascending</option>
+                      <option value="categoryDes">Category Descending</option>
+                      <option value="categoryAsc">Category Ascending</option>
+                    </Form.Control>
+                  </Form>
+                </Col>
+                <Col sm={8}>
+                  <DateForm handleSubmitTime={this.handleSubmitTime} />
+                </Col>
+              </Row>
+            </Container>
             <button onClick={this.resetDateRange}>See All History</button>
             {this.state.filteredTransactions.length ? (
               <div>

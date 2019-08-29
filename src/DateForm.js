@@ -1,4 +1,5 @@
 import React from 'react'
+import {Form, Container, Row, Col} from 'react-bootstrap'
 
 class DateForm extends React.Component {
   constructor(props) {
@@ -80,61 +81,105 @@ class DateForm extends React.Component {
     }
     return (
       <div>
-        From:
-        <form onSubmit={this.handleSubmit}>
-          <select name="year" onChange={this.handleYearChangeFrom}>
-            <option value="2019">2019</option>
-            <option value="2018">2018</option>
-          </select>
-          <select name="month" onChange={this.handleMonthChangeFrom}>
-            <option value="01">Jan</option>
-            <option value="02">Feb</option>
-            <option value="03">Mar</option>
-            <option value="04">Apr</option>
-            <option value="05">May</option>
-            <option value="06">Jun</option>
-            <option value="07">Jul</option>
-            <option value="08">Aug</option>
-            <option value="09">Sep</option>
-            <option value="10">Oct</option>
-            <option value="11">Nov</option>
-            <option value="12">Dec</option>
-          </select>
-          <select name="day" onChange={this.handleDateChangeFrom}>
-            {arr.map(x => (
-              <option value={x} key={x}>
-                {x}
-              </option>
-            ))}
-          </select>
-          to:
-          <select name="year" onChange={this.handleYearChangeTo}>
-            <option value="2019">2019</option>
-            <option value="2018">2018</option>
-          </select>
-          <select name="month" onChange={this.handleMonthChangeTo}>
-            <option value="01">Jan</option>
-            <option value="02">Feb</option>
-            <option value="03">Mar</option>
-            <option value="04">Apr</option>
-            <option value="05">May</option>
-            <option value="06">Jun</option>
-            <option value="07">Jul</option>
-            <option value="08">Aug</option>
-            <option value="09">Sep</option>
-            <option value="10">Oct</option>
-            <option value="11">Nov</option>
-            <option value="12">Dec</option>
-          </select>
-          <select name="day" onChange={this.handleDateChangeTo}>
-            {arr.map(x => (
-              <option value={x} key={x}>
-                {x}
-              </option>
-            ))}
-          </select>
-          <input type="submit" value="submit" className="submitDates" />
-        </form>
+        <Form onSubmit={this.handleSubmit}>
+          <Container>
+            <Row className="justify-content-md-center">
+              <Form.Label>Filter by Date Range:</Form.Label>
+            </Row>
+
+            <Container>
+              <Row>
+                <Col className="dateDropdowns">
+                  <Form.Control
+                    as="select"
+                    name="year"
+                    onChange={this.handleYearChangeFrom}
+                  >
+                    <option value="2019">2019</option>
+                    <option value="2018">2018</option>
+                  </Form.Control>
+                  <Form.Control
+                    as="select"
+                    name="month"
+                    onChange={this.handleMonthChangeFrom}
+                  >
+                    <option value="01">Jan</option>
+                    <option value="02">Feb</option>
+                    <option value="03">Mar</option>
+                    <option value="04">Apr</option>
+                    <option value="05">May</option>
+                    <option value="06">Jun</option>
+                    <option value="07">Jul</option>
+                    <option value="08">Aug</option>
+                    <option value="09">Sep</option>
+                    <option value="10">Oct</option>
+                    <option value="11">Nov</option>
+                    <option value="12">Dec</option>
+                  </Form.Control>
+                  <Form.Control
+                    as="select"
+                    name="day"
+                    onChange={this.handleDateChangeFrom}
+                  >
+                    {arr.map(x => (
+                      <option value={x} key={x}>
+                        {x}
+                      </option>
+                    ))}
+                  </Form.Control>
+                </Col>
+                <Form.Label>to</Form.Label>
+                <Col className="dateDropdowns">
+                  <Form.Control
+                    as="select"
+                    name="year"
+                    onChange={this.handleYearChangeTo}
+                  >
+                    <option value="2019">2019</option>
+                    <option value="2018">2018</option>
+                  </Form.Control>
+                  <Form.Control
+                    as="select"
+                    name="month"
+                    onChange={this.handleMonthChangeTo}
+                  >
+                    <option value="01">Jan</option>
+                    <option value="02">Feb</option>
+                    <option value="03">Mar</option>
+                    <option value="04">Apr</option>
+                    <option value="05">May</option>
+                    <option value="06">Jun</option>
+                    <option value="07">Jul</option>
+                    <option value="08">Aug</option>
+                    <option value="09">Sep</option>
+                    <option value="10">Oct</option>
+                    <option value="11">Nov</option>
+                    <option value="12">Dec</option>
+                  </Form.Control>
+                  <Form.Control
+                    as="select"
+                    name="day"
+                    onChange={this.handleDateChangeTo}
+                  >
+                    {arr.map(x => (
+                      <option value={x} key={x}>
+                        {x}
+                      </option>
+                    ))}
+                  </Form.Control>
+                </Col>
+
+                <Row>
+                  <Form.Control
+                    type="submit"
+                    value="submit"
+                    className="submitDates"
+                  />
+                </Row>
+              </Row>
+            </Container>
+          </Container>
+        </Form>
       </div>
     )
   }

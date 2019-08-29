@@ -14,7 +14,18 @@ code {
 .buttons {
   display: flex;
   justify-content: space-between;
+  margin: 40px 40px 40px 40px;
 }
 .userIdButton {
   border-radius: 80px;
+}
+
+.searchBy {
+  display: flex;
+  flex-direction: row;
+}
+
+.dateDropdowns {
+  display: flex;
+  flex-direction: row;
 }
