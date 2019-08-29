@@ -6,7 +6,7 @@ import DateForm from './DateForm'
 import UserIdButton from './UserIdButtons'
 import Navbar from './Navbar'
 
-import {Container, Jumbotron, Row, Col, Form} from 'react-bootstrap'
+import {Container, Jumbotron, Row, Col, Form, Button} from 'react-bootstrap'
 
 class App extends React.Component {
   constructor(props) {
@@ -332,7 +332,7 @@ class App extends React.Component {
                     <Form.Label>Filter Using Keyword: </Form.Label>
                     <div className="searchBy">
                       <Form.Control
-                        placeholder="Enter Keyword Here"
+                        placeholder="Enter Description Search Term Here"
                         type="text"
                         value={this.state.searchTerm}
                         onChange={this.handleSearchChange}
@@ -371,7 +371,13 @@ class App extends React.Component {
                 </Col>
               </Row>
             </Container>
-            <button onClick={this.resetDateRange}>See All History</button>
+            <Button
+              className="allTransactionsButton"
+              variant="outline-primary"
+              onClick={this.resetDateRange}
+            >
+              Reset/See All Transactions
+            </Button>
             {this.state.filteredTransactions.length ? (
               <div>
                 Only transactions from {this.state.filteredRangeFrom} to{' '}
