@@ -1,5 +1,5 @@
 import React from 'react'
-import {Container, Table, Row} from 'react-bootstrap'
+import {Container, Table} from 'react-bootstrap'
 
 const Transactions = props => (
   <div>

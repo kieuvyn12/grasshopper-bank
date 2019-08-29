@@ -5,6 +5,7 @@ import Transactions from './Transactions'
 import DateForm from './DateForm'
 import UserIdButton from './UserIdButtons'
 import Navbar from './Navbar'
+import LineChart from './LineChart'
 
 import {Container, Jumbotron, Row, Col, Form, Button} from 'react-bootstrap'
 
@@ -452,6 +453,10 @@ class App extends React.Component {
                 ) : (
                   ' '
                 )}
+                <LineChart
+                  selectedAccount={this.state.selectedAccount}
+                  transactions={this.state.transactions}
+                />
                 <Transactions allTransactions={this.state.transactions} />
               </div>
             )}
