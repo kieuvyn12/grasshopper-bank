@@ -21,7 +21,8 @@ class App extends React.Component {
       searchTerm: '',
       filteredTransactions: [],
       filteredRangeFrom: '',
-      filteredRangeTo: ''
+      filteredRangeTo: '',
+      noResults: false
     }
     this.getUserId = this.getUserId.bind(this)
     this.getTransactions = this.getTransactions.bind(this)
@@ -40,7 +41,8 @@ class App extends React.Component {
 
   getUserId(event) {
     this.setState({
-      userId: event.target.value
+      userId: event.target.value,
+      noResults: false
     })
     if (this.state.filteredTransactions.length) {
       this.setState({
@@ -237,6 +239,15 @@ class App extends React.Component {
         filteredTransactions: searchMatches
       })
     }
+    if (this.state.noResults === true && searchMatches.length) {
+      this.setState({
+        noResults: false
+      })
+    } else if (searchMatches.length === 0) {
+      this.setState({
+        noResults: true
+      })
+    }
     this.setState({
       searchTerm: ''
     })
@@ -261,12 +272,22 @@ class App extends React.Component {
       filteredRangeFrom: filteredRangeFrom,
       filteredRangeTo: filteredRangeTo
     })
+    if (this.state.noResults === true && filteredTransactions.length) {
+      this.setState({
+        noResults: false
+      })
+    } else if (filteredTransactions.length === 0) {
+      this.setState({
+        noResults: true
+      })
+    }
     return filteredTransactions
   }
 
   resetDateRange(event) {
     this.setState({
-      filteredTransactions: []
+      filteredTransactions: [],
+      noResults: false
     })
     event.preventDefault()
     return []
@@ -399,6 +420,16 @@ class App extends React.Component {
             >
               Reset/See All Transactions
             </Button>
+
+            {this.state.noResults ? (
+              <p className="noResults">
+                Please try again, there were <strong>0</strong> results for your
+                search criteria!
+              </p>
+            ) : (
+              ' '
+            )}
+
             {this.state.filteredTransactions.length ? (
               <div>
                 <p className="displaying">

@@ -62,6 +62,11 @@ code {
   margin: 20px 20px 20px 20px;
 }
 
+.noResults {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
 .displaying {
   font-size: 20px;
   margin-bottom: 10px;

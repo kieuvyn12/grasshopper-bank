@@ -284,6 +284,18 @@ describe('<App /> component', () => {
       let searchMatches = wrapper.instance().handleSearchSubmit(fakeEvent)
       expect(searchMatches[0].description).to.equal('gym membership')
     })
+    it('is an empty array with no matches', () => {
+      const wrapper = shallow(<App />)
+      const testTransactions = [
+        {description: 'groceries'},
+        {description: 'gym membership'},
+        {description: 'electric bill'}
+      ]
+      wrapper.setState({transactions: testTransactions, searchTerm: 'internet'})
+      const fakeEvent = {preventDefault: () => console.log('preventDefault')}
+      let searchMatches = wrapper.instance().handleSearchSubmit(fakeEvent)
+      expect(searchMatches.length).to.equal(0)
+    })
   })
 
   describe('sorts transactions by various criteria', () => {
