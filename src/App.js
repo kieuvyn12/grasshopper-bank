@@ -15,6 +15,7 @@ class App extends React.Component {
       userId: 0,
       allTransactions: [],
       accounts: new Set(),
+      selectedAccount: 'all accounts',
       transactions: [],
       totalBalance: 0,
       searchTerm: '',
@@ -104,7 +105,7 @@ class App extends React.Component {
       let transaction = this.state.allTransactions[i]
       if (
         account === undefined ||
-        account === 'All Accounts' ||
+        account === 'all accounts' ||
         transaction.origin_account === account ||
         transaction.beneficiary_account === account
       ) {
@@ -141,6 +142,15 @@ class App extends React.Component {
     }
     arr = arr.reverse()
     this.setState({transactions: arr})
+    if (account !== undefined) {
+      this.setState({
+        selectedAccount: account
+      })
+    } else {
+      this.setState({
+        selectedAccount: 'all accounts'
+      })
+    }
     return arr
   }
 
@@ -193,7 +203,7 @@ class App extends React.Component {
 
   handleAccountNumberInput(event) {
     let accountNumber
-    if (event.target.value !== 'All Accounts') {
+    if (event.target.value !== 'all accounts') {
       accountNumber = Number(event.target.value)
     }
     this.accountsData(accountNumber)
@@ -324,7 +334,7 @@ class App extends React.Component {
                     >
                       {['Choose An Account']
                         .concat([...this.state.accounts])
-                        .concat(['All Accounts'])
+                        .concat(['all accounts'])
                         .map(account => (
                           <option key={Math.random()} value={account}>
                             {account}
@@ -385,17 +395,21 @@ class App extends React.Component {
               Reset/See All Transactions
             </Button>
             {this.state.filteredTransactions.length ? (
-              <div>
-                Only transactions from {this.state.filteredRangeFrom} to{' '}
-                {this.state.filteredRangeTo}
+              <p className="displaying">
+                Currently displaying all transactions for{' '}
+                {this.state.selectedAccount} from {this.state.filteredRangeFrom}{' '}
+                to {this.state.filteredRangeTo}
                 <Transactions
                   allTransactions={this.state.filteredTransactions}
                 />
-              </div>
+              </p>
             ) : (
               <div>
                 {this.state.transactions.length ? (
-                  <div>All transactions: </div>
+                  <p className="displaying">
+                    Currently displaying all transactions for{' '}
+                    {this.state.selectedAccount}{' '}
+                  </p>
                 ) : (
                   ' '
                 )}
