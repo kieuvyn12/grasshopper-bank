@@ -280,7 +280,10 @@ class App extends React.Component {
       <div className="App">
         <Navbar />
         {this.state.userId === 0 ? (
-          <UserIdButton handleClick={this.getUserId} />
+          <div>
+            What is your user ID?
+            <UserIdButton handleClick={this.getUserId} />
+          </div>
         ) : (
           <div>
             Not you? Choose another user ID to sign in as:{' '}

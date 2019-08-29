@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from 'react-bootstrap/Button'
 
 class UserIdButton extends React.Component {
   constructor(props) {
@@ -12,17 +13,17 @@ class UserIdButton extends React.Component {
     }
     return (
       <div className="buttons">
-        What is your user ID?
         {userIds.map(userId => (
-          <button
-            id={userId}
+          <Button
+            variant="primary"
+            size="lg"
             className="userIdButton"
             key={userId}
             onClick={this.props.handleClick}
             value={userId}
           >
             {userId}
-          </button>
+          </Button>
         ))}
       </div>
     )
