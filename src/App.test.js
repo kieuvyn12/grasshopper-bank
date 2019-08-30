@@ -5,6 +5,7 @@ import Transactions from './Transactions'
 import DateForm from './DateForm'
 import UserIdButtons from './UserIdButtons'
 import Navbar from './Navbar'
+import Welcome from './Welcome'
 
 import Enzyme, {shallow} from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
@@ -445,6 +446,13 @@ describe('<App /> component', () => {
 describe('<Navbar /> component', () => {
   it('renders', () => {
     const wrapper = shallow(<Navbar />)
+    expect(wrapper.exists()).to.equal(true)
+  })
+})
+
+describe('<Welcome /> component', () => {
+  it('renders', () => {
+    const wrapper = shallow(<Welcome />)
     expect(wrapper.exists()).to.equal(true)
   })
 })

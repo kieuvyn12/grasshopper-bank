@@ -6,6 +6,7 @@ import DateForm from './DateForm'
 import UserIdButton from './UserIdButtons'
 import Navbar from './Navbar'
 import LineChart from './LineChart'
+import Welcome from './Welcome'
 
 import {Container, Jumbotron, Row, Col, Form, Button} from 'react-bootstrap'
 
@@ -324,27 +325,7 @@ class App extends React.Component {
         <Navbar />
         {this.state.userId === 0 ? (
           <div>
-            <Container>
-              <Row className="justify-content-md-center">
-                <Col sm={9}>
-                  <Jumbotron>
-                    <Container>
-                      <h1>
-                        Welcome to{' '}
-                        <span className="blueText">
-                          <strong>Grasshopper</strong>
-                        </span>{' '}
-                        Bank!
-                      </h1>
-                      <p className="pleaseSignIn">
-                        Please sign in by selecting your{' '}
-                        <strong>user ID</strong> below:
-                      </p>
-                    </Container>
-                  </Jumbotron>
-                </Col>
-              </Row>
-            </Container>
+            <Welcome />
             <UserIdButton handleClick={this.getUserId} />
           </div>
         ) : (
