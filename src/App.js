@@ -14,6 +14,7 @@ import SortByDropdown from './SortByDropdown'
 import ResetButton from './ResetButton'
 import NoResults from './NoResults'
 import DisplayRange from './DisplayRange'
+import DisplayAll from './DisplayAll'
 
 import {Container, Row} from 'react-bootstrap'
 
@@ -378,10 +379,7 @@ class App extends React.Component {
             ) : (
               <div>
                 {this.state.transactions.length ? (
-                  <p className="displaying">
-                    Currently displaying all transactions for{' '}
-                    <strong>{this.state.selectedAccount}</strong>
-                  </p>
+                  <DisplayAll selectedAccount={this.state.selectedAccount} />
                 ) : (
                   ' '
                 )}
