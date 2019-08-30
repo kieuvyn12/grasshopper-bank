@@ -23,7 +23,8 @@ class App extends React.Component {
       filteredTransactions: [],
       filteredRangeFrom: '',
       filteredRangeTo: '',
-      noResults: false
+      noResults: false,
+      chartTransactions: []
     }
     this.getUserId = this.getUserId.bind(this)
     this.getTransactions = this.getTransactions.bind(this)
@@ -149,7 +150,7 @@ class App extends React.Component {
       }
     }
     arr = arr.reverse()
-    this.setState({transactions: arr})
+    this.setState({transactions: arr, chartTransactions: arr})
     if (account !== undefined) {
       this.setState({
         selectedAccount: account
@@ -461,7 +462,7 @@ class App extends React.Component {
                 )}
                 <LineChart
                   selectedAccount={this.state.selectedAccount}
-                  transactions={this.state.transactions}
+                  transactions={this.state.chartTransactions}
                 />
                 <Transactions allTransactions={this.state.transactions} />
               </div>
