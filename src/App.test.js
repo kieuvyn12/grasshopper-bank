@@ -1,21 +1,23 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
-import Transactions from './Transactions'
-import DateForm from './DateForm'
-import UserIdButtons from './UserIdButtons'
-import Navbar from './Navbar'
-import Welcome from './Welcome'
-import NotYou from './NotYou'
-import FilterAccountForm from './FilterAccountForm'
-import FilterByKeyword from './FilterByKeyword'
-import SortByDropdown from './SortByDropdown'
-import ResetButton from './ResetButton'
-import NoResults from './NoResults'
-import DisplayRange from './DisplayRange'
-import DisplayAll from './DisplayAll'
-import ArrowUp from './ArrowUp'
-import ArrowDown from './ArrowDown'
+import {
+  Navbar,
+  Welcome,
+  NotYou,
+  UserIdButton,
+  DateForm,
+  FilterAccountForm,
+  FilterByKeyword,
+  SortByDropdown,
+  ResetButton,
+  NoResults,
+  DisplayRange,
+  DisplayAll,
+  Transactions,
+  ArrowUp,
+  ArrowDown
+} from './Components'
 
 import Enzyme, {shallow} from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
@@ -467,9 +469,9 @@ describe('<Welcome /> component', () => {
   })
 })
 
-describe('<UserIdButtons /> component', () => {
+describe('<UserIdButton /> component', () => {
   it('renders 9 userId buttons', () => {
-    const wrapper = shallow(<UserIdButtons />)
+    const wrapper = shallow(<UserIdButton />)
     expect(wrapper.find('.userIdButton')).to.have.lengthOf(9)
   })
 })

@@ -1,8 +1,8 @@
 import Navbar from './Navbar'
 import Welcome from './Welcome'
 import NotYou from './NotYou'
+import UserIdButton from './UserIdButton'
 import DateForm from './DateForm'
-import UserIdButton from './UserIdButtons'
 import FilterAccountForm from './FilterAccountForm'
 import FilterByKeyword from './FilterByKeyword'
 import SortByDropdown from './SortByDropdown'
@@ -12,13 +12,15 @@ import NoResults from './NoResults'
 import DisplayRange from './DisplayRange'
 import DisplayAll from './DisplayAll'
 import Transactions from './Transactions'
+import ArrowUp from './ArrowUp'
+import ArrowDown from './ArrowDown'
 
 export {
   Navbar,
   Welcome,
   NotYou,
-  DateForm,
   UserIdButton,
+  DateForm,
   FilterAccountForm,
   FilterByKeyword,
   SortByDropdown,
@@ -27,5 +29,7 @@ export {
   NoResults,
   DisplayRange,
   DisplayAll,
-  Transactions
+  Transactions,
+  ArrowUp,
+  ArrowDown
 }
