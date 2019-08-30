@@ -14,6 +14,8 @@ import ResetButton from './ResetButton'
 import NoResults from './NoResults'
 import DisplayRange from './DisplayRange'
 import DisplayAll from './DisplayAll'
+import ArrowUp from './ArrowUp'
+import ArrowDown from './ArrowDown'
 
 import Enzyme, {shallow} from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
@@ -578,5 +580,18 @@ describe('<Transactions /> component', () => {
     ]
     const wrapper = shallow(<Transactions allTransactions={allTransactions} />)
     expect(wrapper.find('.transaction')).to.have.lengthOf(3)
+  })
+
+  describe('<ArrowUp /> component', () => {
+    it('renders', () => {
+      const wrapper = shallow(<ArrowUp />)
+      expect(wrapper.exists()).to.equal(true)
+    })
+  })
+  describe('<ArrowDown /> component', () => {
+    it('renders', () => {
+      const wrapper = shallow(<ArrowDown />)
+      expect(wrapper.exists()).to.equal(true)
+    })
   })
 })
