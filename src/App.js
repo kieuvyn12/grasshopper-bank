@@ -12,6 +12,7 @@ import FilterAccountForm from './FilterAccountForm'
 import FilterByKeyword from './FilterByKeyword'
 import SortByDropdown from './SortByDropdown'
 import ResetButton from './ResetButton'
+import NoResults from './NoResults'
 
 import {Container, Row} from 'react-bootstrap'
 
@@ -360,14 +361,7 @@ class App extends React.Component {
             </Container>
             <ResetButton resetDateRange={this.resetDateRange} />
 
-            {this.state.noResults ? (
-              <p className="noResults">
-                Please try again, there were <strong>0</strong> results for your
-                search criteria!
-              </p>
-            ) : (
-              ' '
-            )}
+            {this.state.noResults ? <NoResults /> : ' '}
 
             {this.state.filteredTransactions.length ? (
               <div>
