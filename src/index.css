@@ -11,6 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.blueText {
+  color: #4bc0c0;
+}
+
 .pleaseSignIn {
   font-size: 25px;
 }
@@ -28,6 +32,8 @@ code {
 }
 .userIdButton {
   border-radius: 80px;
+  background-color: #4bc0c0;
+  border: none;
 }
 
 .searchBy {
@@ -60,6 +66,8 @@ code {
 
 .allTransactionsButton {
   margin: 20px 20px 20px 20px;
+  border-color: #4bc0c0;
+  color: #4bc0c0;
 }
 
 .noResults {
@@ -75,5 +83,5 @@ code {
 .chart {
   max-height: 50%;
   max-width: 50%;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
 }

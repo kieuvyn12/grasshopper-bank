@@ -328,7 +328,13 @@ class App extends React.Component {
                 <Col sm={9}>
                   <Jumbotron>
                     <Container>
-                      <h1>Welcome to Grasshopper Bank!</h1>
+                      <h1>
+                        Welcome to{' '}
+                        <span className="blueText">
+                          <strong>Grasshopper</strong>
+                        </span>{' '}
+                        Bank!
+                      </h1>
                       <p className="pleaseSignIn">
                         Please sign in by selecting your{' '}
                         <strong>user ID</strong> below:

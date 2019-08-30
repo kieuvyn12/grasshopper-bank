@@ -5,7 +5,12 @@ const NavBar = () => {
   return (
     <div className="navBar">
       <Navbar bg="light">
-        <Navbar.Brand>Grasshopper Bank</Navbar.Brand>
+        <Navbar.Brand>
+          <span className="blueText">
+            <strong>Grasshopper</strong>
+          </span>{' '}
+          Bank
+        </Navbar.Brand>
       </Navbar>
     </div>
   )

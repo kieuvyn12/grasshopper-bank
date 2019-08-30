@@ -5,7 +5,6 @@ import Transactions from './Transactions'
 import DateForm from './DateForm'
 import UserIdButtons from './UserIdButtons'
 import Navbar from './Navbar'
-import LineChart from './LineChart'
 
 import Enzyme, {shallow} from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
