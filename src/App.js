@@ -354,9 +354,7 @@ class App extends React.Component {
             <Container>
               <Row>
                 <SortByDropdown handleSortInput={this.handleSortInput} />
-                <Col sm={8}>
-                  <DateForm handleSubmitTime={this.handleSubmitTime} />
-                </Col>
+                <DateForm handleSubmitTime={this.handleSubmitTime} />
               </Row>
             </Container>
             <Button
