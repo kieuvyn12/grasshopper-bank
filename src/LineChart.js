@@ -35,7 +35,10 @@ class LineChart extends React.Component {
     }
     return (
       <Container className="chart">
-        <Line data={data} />
+        <div>
+          <Line data={data} />
+          <p>Balance History</p>
+        </div>
       </Container>
     )
   }
