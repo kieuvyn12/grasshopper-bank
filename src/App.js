@@ -9,6 +9,7 @@ import LineChart from './LineChart'
 import Welcome from './Welcome'
 import NotYou from './NotYou'
 import FilterAccountForm from './FilterAccountForm'
+import FilterByKeyword from './FilterByKeyword'
 
 import {Container, Row, Col, Form, Button} from 'react-bootstrap'
 
@@ -342,22 +343,11 @@ class App extends React.Component {
                   handleAccountNumberInput={this.handleAccountNumberInput}
                   accounts={this.state.accounts}
                 />
-                <Col sm={8}>
-                  <Form onSubmit={this.handleSearchSubmit}>
-                    <Form.Label>Filter Using Keyword: </Form.Label>
-                    <div className="searchBy">
-                      <Form.Control
-                        placeholder="Enter Description Search Term Here"
-                        type="text"
-                        value={this.state.searchTerm}
-                        onChange={this.handleSearchChange}
-                      ></Form.Control>
-                      <Col sm={2}>
-                        <Form.Control type="submit" value="Submit" />
-                      </Col>
-                    </div>
-                  </Form>
-                </Col>
+                <FilterByKeyword
+                  handleSearchSubmit={this.handleSearchSubmit}
+                  searchTerm={this.state.searchTerm}
+                  handleSearchChange={this.handleSearchChange}
+                />
               </Row>
             </Container>
             <Container>

@@ -8,6 +8,7 @@ import Navbar from './Navbar'
 import Welcome from './Welcome'
 import NotYou from './NotYou'
 import FilterAccountForm from './FilterAccountForm'
+import FilterByKeyword from './FilterByKeyword'
 
 import Enzyme, {shallow} from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
@@ -476,6 +477,20 @@ describe('<NotYou /> component', () => {
 describe('<FilterAccountForm /> component', () => {
   it('renders', () => {
     const wrapper = shallow(<FilterAccountForm accounts={[]} />)
+    expect(wrapper.exists()).to.equal(true)
+  })
+})
+
+describe('<FilterByKeyword /> component', () => {
+  it('renders', () => {
+    let handleSearchSubmit = () => {}
+    const wrapper = shallow(
+      <FilterByKeyword
+        handleSearchSubmit={handleSearchSubmit}
+        searchTerm=""
+        handleSearchChange={handleSearchSubmit}
+      />
+    )
     expect(wrapper.exists()).to.equal(true)
   })
 })
