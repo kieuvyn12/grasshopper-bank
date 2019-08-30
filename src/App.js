@@ -13,6 +13,7 @@ import FilterByKeyword from './FilterByKeyword'
 import SortByDropdown from './SortByDropdown'
 import ResetButton from './ResetButton'
 import NoResults from './NoResults'
+import DisplayRange from './DisplayRange'
 
 import {Container, Row} from 'react-bootstrap'
 
@@ -365,12 +366,11 @@ class App extends React.Component {
 
             {this.state.filteredTransactions.length ? (
               <div>
-                <p className="displaying">
-                  Currently displaying transactions for{' '}
-                  <strong>{this.state.selectedAccount}</strong> from{' '}
-                  <strong>{this.state.filteredRangeFrom}</strong> to{' '}
-                  <strong>{this.state.filteredRangeTo}</strong>
-                </p>
+                <DisplayRange
+                  selectedAccount={this.state.selectedAccount}
+                  filteredRangeFrom={this.state.filteredRangeFrom}
+                  filteredRangeTo={this.state.filteredRangeTo}
+                />
                 <Transactions
                   allTransactions={this.state.filteredTransactions}
                 />

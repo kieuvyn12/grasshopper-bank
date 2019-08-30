@@ -12,6 +12,7 @@ import FilterByKeyword from './FilterByKeyword'
 import SortByDropdown from './SortByDropdown'
 import ResetButton from './ResetButton'
 import NoResults from './NoResults'
+import DisplayRange from './DisplayRange'
 
 import Enzyme, {shallow} from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
@@ -515,6 +516,13 @@ describe('<ResetButton /> component', () => {
 describe('<NoResults /> component', () => {
   it('renders', () => {
     const wrapper = shallow(<NoResults />)
+    expect(wrapper.exists()).to.equal(true)
+  })
+})
+
+describe('<DisplayRange /> component', () => {
+  it('renders', () => {
+    const wrapper = shallow(<DisplayRange />)
     expect(wrapper.exists()).to.equal(true)
   })
 })
