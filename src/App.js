@@ -7,8 +7,9 @@ import UserIdButton from './UserIdButtons'
 import Navbar from './Navbar'
 import LineChart from './LineChart'
 import Welcome from './Welcome'
+import NotYou from './NotYou'
 
-import {Container, Jumbotron, Row, Col, Form, Button} from 'react-bootstrap'
+import {Container, Row, Col, Form, Button} from 'react-bootstrap'
 
 class App extends React.Component {
   constructor(props) {
@@ -330,10 +331,7 @@ class App extends React.Component {
           </div>
         ) : (
           <div>
-            <p className="notYou">
-              Is this <em>not</em> your information? Please select another{' '}
-              <strong>user ID</strong>:
-            </p>
+            <NotYou />
             <div className="buttons">
               <UserIdButton handleClick={this.getUserId} />
             </div>

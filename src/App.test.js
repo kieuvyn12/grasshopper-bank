@@ -6,6 +6,8 @@ import DateForm from './DateForm'
 import UserIdButtons from './UserIdButtons'
 import Navbar from './Navbar'
 import Welcome from './Welcome'
+import NotYou from './NotYou'
+import FilterAccountForm from './FilterAccountForm'
 
 import Enzyme, {shallow} from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
@@ -461,6 +463,13 @@ describe('<UserIdButtons /> component', () => {
   it('renders 9 userId buttons', () => {
     const wrapper = shallow(<UserIdButtons />)
     expect(wrapper.find('.userIdButton')).to.have.lengthOf(9)
+  })
+})
+
+describe('<NotYou /> component', () => {
+  it('renders', () => {
+    const wrapper = shallow(<NotYou />)
+    expect(wrapper.exists()).to.equal(true)
   })
 })
 
