@@ -9,6 +9,7 @@ import Welcome from './Welcome'
 import NotYou from './NotYou'
 import FilterAccountForm from './FilterAccountForm'
 import FilterByKeyword from './FilterByKeyword'
+import SortByDropdown from './SortByDropdown'
 
 import Enzyme, {shallow} from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
@@ -483,14 +484,14 @@ describe('<FilterAccountForm /> component', () => {
 
 describe('<FilterByKeyword /> component', () => {
   it('renders', () => {
-    let handleSearchSubmit = () => {}
-    const wrapper = shallow(
-      <FilterByKeyword
-        handleSearchSubmit={handleSearchSubmit}
-        searchTerm=""
-        handleSearchChange={handleSearchSubmit}
-      />
-    )
+    const wrapper = shallow(<FilterByKeyword />)
+    expect(wrapper.exists()).to.equal(true)
+  })
+})
+
+describe('<SortByDropdown /> component', () => {
+  it('renders', () => {
+    const wrapper = shallow(<SortByDropdown />)
     expect(wrapper.exists()).to.equal(true)
   })
 })

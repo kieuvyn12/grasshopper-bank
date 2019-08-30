@@ -10,6 +10,7 @@ import Welcome from './Welcome'
 import NotYou from './NotYou'
 import FilterAccountForm from './FilterAccountForm'
 import FilterByKeyword from './FilterByKeyword'
+import SortByDropdown from './SortByDropdown'
 
 import {Container, Row, Col, Form, Button} from 'react-bootstrap'
 
@@ -352,25 +353,7 @@ class App extends React.Component {
             </Container>
             <Container>
               <Row>
-                <Col sm={4}>
-                  <Form>
-                    <Form.Label>Sort By:</Form.Label>
-                    <Form.Control
-                      as="select"
-                      name="sortBy"
-                      onChange={this.handleSortInput}
-                    >
-                      <option value="dateDes">Date Descending</option>
-                      <option value="dateAsc">Date Ascending</option>
-                      <option value="amountDes">Amount Descending</option>
-                      <option value="amountAsc">Amount Ascending</option>
-                      <option value="typeDes">Type Descending</option>
-                      <option value="typeAsc">Type Ascending</option>
-                      <option value="categoryDes">Category Descending</option>
-                      <option value="categoryAsc">Category Ascending</option>
-                    </Form.Control>
-                  </Form>
-                </Col>
+                <SortByDropdown handleSortInput={this.handleSortInput} />
                 <Col sm={8}>
                   <DateForm handleSubmitTime={this.handleSubmitTime} />
                 </Col>
