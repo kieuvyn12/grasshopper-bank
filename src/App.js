@@ -1,20 +1,22 @@
 import React from 'react'
 import './App.css'
 import axios from 'axios'
-import Transactions from './Transactions'
-import DateForm from './DateForm'
-import UserIdButton from './UserIdButtons'
-import Navbar from './Navbar'
-import LineChart from './LineChart'
-import Welcome from './Welcome'
-import NotYou from './NotYou'
-import FilterAccountForm from './FilterAccountForm'
-import FilterByKeyword from './FilterByKeyword'
-import SortByDropdown from './SortByDropdown'
-import ResetButton from './ResetButton'
-import NoResults from './NoResults'
-import DisplayRange from './DisplayRange'
-import DisplayAll from './DisplayAll'
+import {
+  Navbar,
+  Welcome,
+  NotYou,
+  DateForm,
+  UserIdButton,
+  FilterAccountForm,
+  FilterByKeyword,
+  SortByDropdown,
+  LineChart,
+  ResetButton,
+  NoResults,
+  DisplayRange,
+  DisplayAll,
+  Transactions
+} from './Components'
 
 import {Container, Row} from 'react-bootstrap'
 
