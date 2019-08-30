@@ -11,8 +11,9 @@ import NotYou from './NotYou'
 import FilterAccountForm from './FilterAccountForm'
 import FilterByKeyword from './FilterByKeyword'
 import SortByDropdown from './SortByDropdown'
+import ResetButton from './ResetButton'
 
-import {Container, Row, Col, Form, Button} from 'react-bootstrap'
+import {Container, Row} from 'react-bootstrap'
 
 class App extends React.Component {
   constructor(props) {
@@ -357,13 +358,7 @@ class App extends React.Component {
                 <DateForm handleSubmitTime={this.handleSubmitTime} />
               </Row>
             </Container>
-            <Button
-              className="allTransactionsButton"
-              variant="outline-primary"
-              onClick={this.resetDateRange}
-            >
-              Reset/See All Transactions
-            </Button>
+            <ResetButton resetDateRange={this.resetDateRange} />
 
             {this.state.noResults ? (
               <p className="noResults">

@@ -10,6 +10,7 @@ import NotYou from './NotYou'
 import FilterAccountForm from './FilterAccountForm'
 import FilterByKeyword from './FilterByKeyword'
 import SortByDropdown from './SortByDropdown'
+import ResetButton from './ResetButton'
 
 import Enzyme, {shallow} from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
@@ -499,6 +500,13 @@ describe('<SortByDropdown /> component', () => {
 describe('<DateForm /> component', () => {
   it('renders', () => {
     const wrapper = shallow(<DateForm />)
+    expect(wrapper.exists()).to.equal(true)
+  })
+})
+
+describe('<ResetButton /> component', () => {
+  it('renders', () => {
+    const wrapper = shallow(<ResetButton />)
     expect(wrapper.exists()).to.equal(true)
   })
 })
