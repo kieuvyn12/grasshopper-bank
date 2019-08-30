@@ -16,6 +16,10 @@ code {
   text-align: center;
 }
 
+.jumbotron {
+  margin-top: 50px;
+}
+
 .blueText {
   color: #4bc0c0;
 }
