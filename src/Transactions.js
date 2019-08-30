@@ -1,6 +1,5 @@
 import React from 'react'
-import ArrowUp from './ArrowUp'
-import ArrowDown from './ArrowDown'
+import {ArrowUp, ArrowDown} from './Components'
 import {Container, Table} from 'react-bootstrap'
 
 const Transactions = props => (
