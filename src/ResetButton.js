@@ -6,7 +6,7 @@ const ResetButton = props => {
     <Button
       className="allTransactionsButton"
       variant="outline-primary"
-      onClick={props.resetDateRange}
+      onClick={props.resetTransactions}
     >
       Reset/See All Transactions
     </Button>

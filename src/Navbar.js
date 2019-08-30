@@ -1,11 +1,11 @@
 import React from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 
-const NavBar = () => {
+const NavBar = props => {
   return (
     <div className="navBar">
       <Navbar bg="light">
-        <Navbar.Brand>
+        <Navbar.Brand onClick={props.handleBrandClick} href="/">
           <span className="blueText">
             <strong>Grasshopper</strong>
           </span>{' '}

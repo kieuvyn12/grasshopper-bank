@@ -45,7 +45,7 @@ class App extends React.Component {
     this.handleAccountNumberInput = this.handleAccountNumberInput.bind(this)
     this.handleSortInput = this.handleSortInput.bind(this)
     this.handleSubmitTime = this.handleSubmitTime.bind(this)
-    this.resetDateRange = this.resetDateRange.bind(this)
+    this.resetTransactions = this.resetTransactions.bind(this)
     this.convertUnixToDate = this.convertUnixToDate.bind(this)
     this.handleSearchChange = this.handleSearchChange.bind(this)
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this)
@@ -298,7 +298,7 @@ class App extends React.Component {
     return filteredTransactions
   }
 
-  resetDateRange(event) {
+  resetTransactions(event) {
     this.setState({
       filteredTransactions: [],
       noResults: false
@@ -333,7 +333,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Navbar />
+        <Navbar handleBrandClick={this.resetTransactions} />
         {this.state.userId === 0 ? (
           <div>
             <Welcome />
@@ -364,7 +364,7 @@ class App extends React.Component {
                 <DateForm handleSubmitTime={this.handleSubmitTime} />
               </Row>
             </Container>
-            <ResetButton resetDateRange={this.resetDateRange} />
+            <ResetButton resetTransactions={this.resetTransactions} />
 
             {this.state.noResults ? <NoResults /> : ' '}
 

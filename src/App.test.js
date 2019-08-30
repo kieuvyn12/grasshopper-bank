@@ -440,7 +440,9 @@ describe('<App /> component', () => {
         transactions: testTransactions
       })
       const fakeEvent = {preventDefault: () => console.log('preventDefault')}
-      let resetToAllTransactions = wrapper.instance().resetDateRange(fakeEvent)
+      let resetToAllTransactions = wrapper
+        .instance()
+        .resetTransactions(fakeEvent)
       expect(resetToAllTransactions.length).to.equal(0)
     })
   })
