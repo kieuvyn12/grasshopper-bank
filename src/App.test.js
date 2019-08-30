@@ -293,7 +293,7 @@ describe('<App /> component', () => {
         {description: 'electric bill'}
       ]
       wrapper.setState({transactions: testTransactions, searchTerm: 'gym'})
-      const fakeEvent = {preventDefault: () => console.log('preventDefault')}
+      const fakeEvent = {preventDefault: () => {}}
       let searchMatches = wrapper.instance().handleSearchSubmit(fakeEvent)
       expect(searchMatches[0].description).to.equal('gym membership')
     })
@@ -305,14 +305,16 @@ describe('<App /> component', () => {
         {description: 'electric bill'}
       ]
       wrapper.setState({transactions: testTransactions, searchTerm: 'internet'})
-      const fakeEvent = {preventDefault: () => console.log('preventDefault')}
+      const fakeEvent = {preventDefault: () => {}}
       let searchMatches = wrapper.instance().handleSearchSubmit(fakeEvent)
       expect(searchMatches.length).to.equal(0)
     })
     it('resets when clicked on view all history', () => {
       const wrapper = shallow(<App />)
       wrapper.setState({filteredTransactions: ['searchMatch1', 'searchMatch2']})
-      const fakeEvent = {preventDefault: () => console.log('preventDefault')}
+      const fakeEvent = {
+        preventDefault: () => {}
+      }
       let resetToAllTransactions = wrapper
         .instance()
         .resetTransactions(fakeEvent)
@@ -490,7 +492,7 @@ describe('<App /> component', () => {
       wrapper.setState({
         transactions: testTransactions
       })
-      const fakeEvent = {preventDefault: () => console.log('preventDefault')}
+      const fakeEvent = {preventDefault: () => {}}
       let resetToAllTransactions = wrapper
         .instance()
         .resetTransactions(fakeEvent)
