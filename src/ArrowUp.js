@@ -7,7 +7,6 @@ const ArrowUp = props => (
     focusable="false"
     data-prefix="far"
     data-icon="arrow-alt-circle-up"
-    class="svg-inline--fa fa-arrow-alt-circle-up fa-w-16"
     role="img"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 512 512"
