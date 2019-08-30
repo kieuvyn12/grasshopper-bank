@@ -8,6 +8,7 @@ import Navbar from './Navbar'
 import LineChart from './LineChart'
 import Welcome from './Welcome'
 import NotYou from './NotYou'
+import FilterAccountForm from './FilterAccountForm'
 
 import {Container, Row, Col, Form, Button} from 'react-bootstrap'
 
@@ -337,25 +338,10 @@ class App extends React.Component {
             </div>
             <Container>
               <Row>
-                <Col sm={4}>
-                  <Form>
-                    <Form.Label>Filter by Account: </Form.Label>
-                    <Form.Control
-                      as="select"
-                      name="accountNumber"
-                      onChange={this.handleAccountNumberInput}
-                    >
-                      {['Choose An Account']
-                        .concat([...this.state.accounts])
-                        .concat(['all accounts'])
-                        .map(account => (
-                          <option key={Math.random()} value={account}>
-                            {account}
-                          </option>
-                        ))}
-                    </Form.Control>
-                  </Form>
-                </Col>
+                <FilterAccountForm
+                  handleAccountNumberInput={this.handleAccountNumberInput}
+                  accounts={this.state.accounts}
+                />
                 <Col sm={8}>
                   <Form onSubmit={this.handleSearchSubmit}>
                     <Form.Label>Filter Using Keyword: </Form.Label>

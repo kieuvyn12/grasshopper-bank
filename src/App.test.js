@@ -473,6 +473,13 @@ describe('<NotYou /> component', () => {
   })
 })
 
+describe('<FilterAccountForm /> component', () => {
+  it('renders', () => {
+    const wrapper = shallow(<FilterAccountForm accounts={[]} />)
+    expect(wrapper.exists()).to.equal(true)
+  })
+})
+
 describe('<DateForm /> component', () => {
   it('renders', () => {
     const wrapper = shallow(<DateForm />)
