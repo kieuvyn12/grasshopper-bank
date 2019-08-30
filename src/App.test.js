@@ -10,6 +10,7 @@ import {
   FilterAccountForm,
   FilterByKeyword,
   SortByDropdown,
+  LineChart,
   ResetButton,
   NoResults,
   DisplayRange,
@@ -537,6 +538,13 @@ describe('<DisplayAll /> component', () => {
 describe('<DisplayRange /> component', () => {
   it('renders', () => {
     const wrapper = shallow(<DisplayRange />)
+    expect(wrapper.exists()).to.equal(true)
+  })
+})
+
+describe('<LineChart /> component', () => {
+  it('renders', () => {
+    const wrapper = shallow(<LineChart transactions={[]} />)
     expect(wrapper.exists()).to.equal(true)
   })
 })
